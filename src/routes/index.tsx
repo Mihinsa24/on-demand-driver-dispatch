@@ -1,24 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SafeGoApp } from "@/components/safego/SafeGoApp";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "PickMe SafeGo — Book a Driver for Your Own Car" },
+      { name: "description", content: "Interactive prototype: hire a verified driver to drive you and your own vehicle to your destination." },
+      { property: "og:title", content: "PickMe SafeGo — Book a Driver for Your Own Car" },
+      { property: "og:description", content: "Your vehicle. Your destination. A driver when you need one." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="flex min-h-screen items-center justify-center bg-stage sm:p-6">
+      <div className="h-[100dvh] w-full overflow-hidden bg-background sm:h-[844px] sm:w-[390px] sm:rounded-[44px] sm:border-[10px] sm:border-secondary sm:shadow-2xl">
+        <SafeGoApp />
+      </div>
+    </main>
   );
 }
