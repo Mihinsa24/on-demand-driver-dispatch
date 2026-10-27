@@ -19,7 +19,7 @@ export function TopBar({ title, onBack, right }: { title?: string; onBack?: () =
 export function SafeGoMark({ inverted }: { inverted?: boolean }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className={cn("rounded-md px-1.5 py-0.5 text-xs font-extrabold", inverted ? "bg-primary-foreground text-primary" : "bg-primary text-primary-foreground")}>PickMe</span>
+      <span className={cn("rounded-md px-1.5 py-0.5 text-xs font-extrabold", inverted ? "bg-primary-foreground text-primary-ink" : "bg-primary text-primary-foreground")}>PickMe</span>
       <span className={cn("text-base font-extrabold tracking-tight", inverted ? "text-primary-foreground" : "text-foreground")}>SafeGo</span>
     </div>
   );
@@ -66,7 +66,7 @@ export function Chip({ active, children, onClick }: { active?: boolean; children
       onClick={onClick}
       className={cn(
         "shrink-0 rounded-full border px-3.5 py-2 text-sm font-semibold transition",
-        active ? "border-primary bg-primary-soft text-primary" : "border-border bg-card text-foreground",
+        active ? "border-primary bg-primary-soft text-primary-ink" : "border-border bg-card text-foreground",
       )}
     >
       {children}
@@ -95,20 +95,20 @@ export function MapPreview({ height = 160, route = true, progress, label }: { he
             <path d="M40 130 C 100 120, 150 70, 210 75 S 280 50, 300 40" fill="none" className="stroke-secondary" strokeWidth="5" strokeLinecap="round" />
             <path d="M40 130 C 100 120, 150 70, 210 75 S 280 50, 300 40" fill="none" className="stroke-primary route-dash" strokeWidth="5" strokeDasharray="10 10" strokeLinecap="round" />
             <circle cx="40" cy="130" r="8" className="fill-card stroke-secondary" strokeWidth="4" />
-            <circle cx="300" cy="40" r="9" className="fill-primary" />
+            <circle cx="300" cy="40" r="9" className="fill-primary stroke-secondary" strokeWidth="3" />
             <circle cx="300" cy="40" r="3.5" className="fill-card" />
           </>
         )}
         {progress !== undefined && (
           <g transform={`translate(${carX} ${carY})`}>
             <circle r="14" className="fill-primary pulse-ring" style={{ transformOrigin: "center", transformBox: "fill-box" }} />
-            <circle r="10" className="fill-primary stroke-card" strokeWidth="3" />
+            <circle r="10" className="fill-primary stroke-secondary" strokeWidth="3" />
           </g>
         )}
         {!route && (
           <g transform="translate(170 85)">
             <circle r="16" className="fill-primary pulse-ring" style={{ transformOrigin: "center", transformBox: "fill-box" }} />
-            <circle r="8" className="fill-primary stroke-card" strokeWidth="3" />
+            <circle r="8" className="fill-primary stroke-secondary" strokeWidth="3" />
           </g>
         )}
       </svg>
@@ -132,7 +132,7 @@ export function DriverAvatar({ initials, size = 56 }: { initials: string; size?:
 export function Rating({ value }: { value: number }) {
   return (
     <span className="inline-flex items-center gap-1 text-sm font-semibold">
-      <Star className="h-4 w-4 fill-accent text-accent" />
+      <Star className="h-4 w-4 fill-primary text-primary-ink" />
       {value.toFixed(1)}
     </span>
   );
@@ -165,7 +165,7 @@ export function BottomNav({ tab, onTab }: { tab: Tab; onTab: (t: Tab) => void })
   return (
     <nav className="grid grid-cols-3 border-t border-border bg-card pb-5 pt-2">
       {items.map(({ id, label, Icon }) => (
-        <button key={id} onClick={() => onTab(id)} className={cn("flex flex-col items-center gap-0.5 text-xs font-semibold", tab === id ? "text-primary" : "text-muted-foreground")}>
+        <button key={id} onClick={() => onTab(id)} className={cn("flex flex-col items-center gap-0.5 text-xs font-semibold", tab === id ? "text-primary-ink" : "text-muted-foreground")}>
           <Icon className="h-5 w-5" />
           {label}
         </button>
