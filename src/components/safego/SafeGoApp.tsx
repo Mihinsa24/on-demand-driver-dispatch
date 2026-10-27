@@ -44,7 +44,7 @@ export function SafeGoApp() {
   const vehicle = myVehicles.find((v) => v.id === vehicleId)!;
 
   const tab: Tab = screen === "activity" ? "activity" : screen === "account" ? "account" : "home";
-  const showNav = ["home", "activity", "account", "campaign"].includes(screen);
+  const showNav = (["home", "activity", "account", "campaign"] as Screen[]).includes(screen as Screen);
 
   const ctx = {
     go, back, reset, pickup, setPickup, destination, setDestination, vehicle, vehicleId, setVehicleId,
