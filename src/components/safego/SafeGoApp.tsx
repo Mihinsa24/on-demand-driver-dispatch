@@ -34,7 +34,7 @@ export function SafeGoApp() {
 
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
-  const [vehicleId, setVehicleId] = useState(myVehicles[0].id);
+  const [vehicleId, setVehicleId] = useState(myVehicles[0]!.id);
   const [transmission, setTransmission] = useState("Automatic");
   const [makeModel, setMakeModel] = useState("Toyota Aqua");
   const [plate, setPlate] = useState("CAB-4521");
@@ -323,7 +323,7 @@ function ScheduleScreen(c: Ctx) {
           <div className="flex flex-col items-center py-4 text-center">
             <CheckCircle2 className="h-14 w-14 text-success" />
             <h1 className="mt-2 text-xl font-extrabold">Your driver is planned</h1>
-            <p className="text-sm text-muted-foreground">{days[day].full} · {time}</p>
+            <p className="text-sm text-muted-foreground">{days[day]!.full} · {time}</p>
           </div>
           <Card className="space-y-4">
             <RouteLines from={c.pickup} to={c.destination} />
@@ -644,7 +644,7 @@ function LocationSheet({ open, title, onClose, onPick, current }: { open: boolea
           <button onClick={() => onPick(q)} className="flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left text-sm font-semibold"><MapPin className="h-4 w-4 text-muted-foreground" /> “{q}”</button>
         )}
         {list.map((s) => (
-          <button key={s} onClick={() => onPick(s.includes(" — ") ? s.split(" — ")[1] : s)} className="flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left text-sm font-medium hover:bg-muted">
+          <button key={s} onClick={() => onPick(s.includes(" — ") ? s.split(" — ")[1]! : s)} className="flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left text-sm font-medium hover:bg-muted">
             <MapPin className="h-4 w-4 shrink-0 text-muted-foreground" /> {s}
           </button>
         ))}
