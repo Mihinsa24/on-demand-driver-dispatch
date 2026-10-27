@@ -137,7 +137,7 @@ function HomeScreen(c: Ctx) {
         <LocationInputs {...c} />
 
         <Card className="flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary-soft text-primary"><Car className="h-5 w-5" /></div>
+          <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary-soft text-primary-ink"><Car className="h-5 w-5" /></div>
           <div className="flex-1">
             <div className="text-xs text-muted-foreground">Your vehicle</div>
             <div className="text-sm font-bold">{c.vehicle.name} · {c.vehicle.plate}</div>
@@ -156,7 +156,7 @@ function HomeScreen(c: Ctx) {
             const Icon = placeIcons[p.id as keyof typeof placeIcons];
             return (
               <button key={p.id} onClick={() => c.setDestination(p.address)} className="flex shrink-0 items-center gap-2 rounded-full bg-card px-3.5 py-2 text-sm font-semibold shadow-card">
-                <Icon className="h-4 w-4 text-primary" /> {p.label}
+                <Icon className="h-4 w-4 text-primary-ink" /> {p.label}
               </button>
             );
           })}
@@ -174,7 +174,7 @@ function HomeScreen(c: Ctx) {
         </Card>
 
         <Card>
-          <div className="mb-3 flex items-center gap-2 font-bold"><Info className="h-4 w-4 text-primary" /> How SafeGo works</div>
+          <div className="mb-3 flex items-center gap-2 font-bold"><Info className="h-4 w-4 text-primary-ink" /> How SafeGo works</div>
           <ol className="space-y-3">
             {[
               ["Book", "Tell us where to meet you and where you're going."],
@@ -211,7 +211,7 @@ function HomeScreen(c: Ctx) {
                   <div className="truncate text-sm font-bold">{b.from} → {b.to}</div>
                   <div className="text-xs text-muted-foreground">{b.date}</div>
                 </div>
-                <button onClick={() => { c.setPickup(b.from); c.setDestination(b.to); c.go("book"); }} className="text-xs font-bold text-primary">Rebook</button>
+                <button onClick={() => { c.setPickup(b.from); c.setDestination(b.to); c.go("book"); }} className="text-xs font-bold text-primary-ink">Rebook</button>
               </Card>
             ))}
           </div>
@@ -225,7 +225,7 @@ function SituationScreen(c: Ctx) {
   const sel = situations.find((s) => s.id === c.situation);
   return (
     <div className="flex min-h-full flex-col">
-      <TopBar onBack={c.back} right={<button onClick={() => { c.setSituation(null); c.go("book"); }} className="text-sm font-bold text-primary">Skip</button>} />
+      <TopBar onBack={c.back} right={<button onClick={() => { c.setSituation(null); c.go("book"); }} className="text-sm font-bold text-primary-ink">Skip</button>} />
       <div className="flex-1 px-5">
         <h1 className="text-2xl font-extrabold">How can SafeGo help?</h1>
         <p className="mt-1 text-sm text-muted-foreground">Optional — this just helps us tailor your experience. We don't store details.</p>
@@ -269,7 +269,7 @@ function BookScreen(c: Ctx) {
           <div className="mb-2 text-sm font-bold">Your vehicle is</div>
           <div className="grid grid-cols-3 gap-2">
             {["Automatic", "Manual", "EV/Hybrid"].map((t) => (
-              <button key={t} onClick={() => c.setTransmission(t)} className={cn("rounded-xl border-2 py-3 text-sm font-bold", c.transmission === t ? "border-primary bg-primary-soft text-primary" : "border-border bg-card")}>{t}</button>
+              <button key={t} onClick={() => c.setTransmission(t)} className={cn("rounded-xl border-2 py-3 text-sm font-bold", c.transmission === t ? "border-primary bg-primary-soft text-primary-ink" : "border-border bg-card")}>{t}</button>
             ))}
           </div>
         </div>
@@ -410,7 +410,7 @@ function MatchingScreen(c: Ctx) {
         <MapPreview height={260} route={false} label={found ? "Sample driver · 1.8 km away" : "Searching nearby verified drivers…"} />
         {!found ? (
           <div className="py-6 text-center">
-            <div className="mx-auto mb-3 h-10 w-10 animate-spin rounded-full border-4 border-border border-t-primary" />
+            <div className="mx-auto mb-3 h-10 w-10 animate-spin rounded-full border-4 border-border border-t-secondary" />
             <p className="font-bold">Matching you with a driver for your {c.makeModel || "car"}</p>
             <p className="text-sm text-muted-foreground">Mock matching — no real driver is contacted</p>
           </div>
@@ -460,7 +460,7 @@ function ConfirmScreen(c: Ctx) {
           </div>
         </Card>
         <Card className="flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary-soft text-primary"><KeyRound className="h-5 w-5" /></div>
+          <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary-soft text-primary-ink"><KeyRound className="h-5 w-5" /></div>
           <div className="flex-1">
             <div className="text-xs text-muted-foreground">{sampleDriver.name.split(" ")[0]} will drive your vehicle</div>
             <div className="text-sm font-bold">{c.makeModel || c.vehicle.name} · {c.plate || "—"} · {c.transmission}</div>
@@ -493,7 +493,7 @@ function ActionRow({ setSheet, shareLabel }: { setSheet: (s: SheetKind) => void;
     <div className="grid grid-cols-3 gap-2">
       {items.map(({ label, Icon, s }) => (
         <button key={label} onClick={() => setSheet(s)} className="flex flex-col items-center gap-1.5 rounded-2xl bg-card py-3 text-xs font-bold shadow-card">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-primary-soft text-primary"><Icon className="h-4 w-4" /></span>
+          <span className="grid h-10 w-10 place-items-center rounded-full bg-primary-soft text-primary-ink"><Icon className="h-4 w-4" /></span>
           {label}
         </button>
       ))}
@@ -572,7 +572,7 @@ function CampaignScreen(c: Ctx) {
           ))}
         </div>
         <Card className="flex items-center gap-3">
-          <Sparkles className="h-5 w-5 text-primary" />
+          <Sparkles className="h-5 w-5 text-primary-ink" />
           <span className="text-sm font-semibold">Or simply because you'd rather not drive today.</span>
         </Card>
         <CTA onClick={() => c.go("situation")}><KeyRound className="h-5 w-5" /> Book a Driver</CTA>
@@ -593,7 +593,7 @@ function ActivityScreen(c: Ctx) {
             <div className="mt-2"><RouteLines from={b.from} to={b.to} /></div>
             <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
               <span className="text-sm font-bold">{b.fare} <SampleTag className="ml-1" /></span>
-              <button onClick={() => { c.setPickup(b.from); c.setDestination(b.to); c.go("book"); }} className="text-sm font-bold text-primary">Rebook</button>
+              <button onClick={() => { c.setPickup(b.from); c.setDestination(b.to); c.go("book"); }} className="text-sm font-bold text-primary-ink">Rebook</button>
             </div>
           </Card>
         ))}
@@ -636,7 +636,7 @@ function LocationSheet({ open, title, onClose, onPick, current }: { open: boolea
       <input autoFocus className={inputCls} placeholder="Search a place" value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && q) onPick(q); }} />
       <div className="no-scrollbar mt-3 max-h-72 space-y-1 overflow-y-auto">
         {current && (
-          <button onClick={() => onPick("Current location — Dutch Hospital, Colombo 01")} className="flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left text-sm font-semibold text-primary">
+          <button onClick={() => onPick("Current location — Dutch Hospital, Colombo 01")} className="flex w-full items-center gap-3 rounded-xl px-2 py-3 text-left text-sm font-semibold text-primary-ink">
             <Navigation className="h-4 w-4" /> Use my current location
           </button>
         )}
@@ -665,7 +665,7 @@ function ShareSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
       </div>
       <button onClick={() => setCopied(true)} className="flex w-full items-center justify-between rounded-xl bg-muted px-4 py-3 text-sm">
         <span className="font-mono">pickme.lk/safego/t/demo123</span>
-        <span className="flex items-center gap-1 font-bold text-primary"><Copy className="h-4 w-4" />{copied ? "Copied" : "Copy"}</span>
+        <span className="flex items-center gap-1 font-bold text-primary-ink"><Copy className="h-4 w-4" />{copied ? "Copied" : "Copy"}</span>
       </button>
       <SampleTag className="mt-4">Demo link — not live</SampleTag>
     </Sheet>
